@@ -1,4 +1,5 @@
 <?php
+require("conexion.php");
 /*
     Debemos crear una app web personal donde podamos llevar el registro de las calificaciones del alumnado. La app debe tener en cuenta:
 
@@ -12,3 +13,10 @@
     La aplicación web debe ser lo más sencilla posible pero ser agil para el usuario.
     (por ej: que permita añadir varias calificaciones de una actividad para todos los alumnos a la vez)
 */
+
+
+?>
+<a href="Asignatura.php">Asignatura</a><br>
+<a href="Alumno.php">Alumno</a><br>
+<a href="Tema.php">Tema</a><br>
+<a href="Actividades.php">Atividades</a><br>
