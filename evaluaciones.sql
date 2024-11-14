@@ -143,8 +143,8 @@ ALTER TABLE `actividades`
 --
 -- Filtros para la tabla `asignaturas`
 --
-ALTER TABLE `asignaturas`
-  ADD CONSTRAINT `asignaturas_ibfk_1` FOREIGN KEY (`nombreAsignatura`) REFERENCES `temas` (`nombreAsignatura`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `temas`
+  ADD CONSTRAINT `asignaturas_ibfk_1` FOREIGN KEY (`nombreAsignatura`) REFERENCES `asignaturas` (`nombreAsignatura`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `matriculados`

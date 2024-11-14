@@ -1,7 +1,7 @@
 <?php
 require("crud.php");
 
-var_dump(read($conn, "actividades"));
+DOMasignaturas($conn);
 
 ?>
 <a href="index.php">Volver a inicio</a>
