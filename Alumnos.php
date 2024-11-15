@@ -13,16 +13,17 @@ require("crud.php");
     ?>
     <button type="submit" name="enviar" id="enviar">Enviar</button>
 </form>
-<a href="index.php">Volver a inicio</a>
 <?php
     
     if (isset($_POST["nombre"]) && isset($_POST["DNI"])) {
         if ($_POST["nombre"] == "" || ($_POST["DNI"] == "")) {
-            echo "No se admiten carácteres en blanco";
+            echo "No se admiten carácteres en blanco <br>";
         }else{
             $datos = [$_POST["nombre"], $_POST["DNI"]];
-            createalumn($conn, $datos);
-            echo "Se ha creado al alumno con éxito";
+            if (createalumn($conn, $datos)) {
+                echo "Se ha creado al alumno con éxito <br>";
+            };
         }
     }
-?>
+    ?>
+<a href="index.php">Volver a inicio</a>
