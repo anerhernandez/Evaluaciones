@@ -40,13 +40,33 @@ function createalumn($conn, $datos)
 function DOMasignaturas($conn)
 {
     $asignaturas = read($conn, "asignaturas");
-    echo "Número total de asignaturas: " . count($asignaturas);
     foreach ($asignaturas as $asignatura) {
-        echo '<p>Esta es la asignatura ' . $asignatura['nombreAsignatura'] . '</p>';
-    };
+        echo '<input id="' . $asignatura['nombreAsignatura'] . '" type="checkbox"Esta es la asignatura ' . $asignatura['nombreAsignatura'] . '>';
+        echo '<label for="' . $asignatura['nombreAsignatura'] . '"> ' . $asignatura['nombreAsignatura'] . '</label><br>';
+    }
 }
 //Asignaturas
-
+function createasig($conn, $asignatura)
+{
+    try {
+        $stmt = $conn->prepare("INSERT INTO asignaturas (nombreAsignatura) VALUES (?)");
+        return $stmt->execute([$asignatura]);
+    } catch (PDOException $e) {
+        switch ($e->getCode()) {
+                // 23000 para repetido
+            case 23000:
+                $_SESSION["asignaturas"]["error"] = "La asignatura que ha escrito ya existe <br>";
+                break;
+                // 22001 para caracter demasiado largo
+            case 22001:
+                $_SESSION["asignaturas"]["error"] = "El texto escrito es demasiado largo <br>";
+                break;
+            default:
+            $_SESSION["asignaturas"]["error"] = "Ha ocurrido un error <br> " . $e->getMessage();
+                break;
+        }
+    }
+}
 //Temas
 
 //Actividades

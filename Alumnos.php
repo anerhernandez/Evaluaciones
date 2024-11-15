@@ -4,17 +4,17 @@ require("crud.php");
 ?>
 <h1>CREAR ALUMNO</h1>
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-    <label for="alumno">Nombre alumno</label>
+    <label for="nombre">Nombre alumno</label>
     <input type="text" name="nombre" id="nombre"><br><br>
-    <label for="alumno">DNI</label>
+    <label for="DNI">DNI</label>
     <input type="text" name="DNI" id="DNI"><br><br>
-    <?php
-    
+    <?php 
+        DOMasignaturas($conn);
     ?>
+    <br>
     <button type="submit" name="enviar" id="enviar">Enviar</button>
 </form>
 <?php
-    
     if (isset($_POST["nombre"]) && isset($_POST["DNI"])) {
         if ($_POST["nombre"] == "" || ($_POST["DNI"] == "")) {
             echo "No se admiten carácteres en blanco <br>";
@@ -25,5 +25,5 @@ require("crud.php");
             };
         }
     }
-    ?>
+?>
 <a href="index.php">Volver a inicio</a>
