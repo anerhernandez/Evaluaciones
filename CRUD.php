@@ -10,12 +10,6 @@ function read($conn, $tabla)
     return $stmt->fetchAll();
 }
 //Alumnos
-// function buscaralu($conn,$DNI){
-//     $stmt = $conn->prepare("SELECT * FROM alumnos WHERE DNI LIKE ?");
-//     $stmt->execute([$DNI]);
-//     $stmt->setFetchMode(PDO::FETCH_ASSOC);
-//     return $stmt->fetchAll();
-// }
 function createalumn($conn, $datos)
 {
     try {
@@ -36,13 +30,45 @@ function createalumn($conn, $datos)
                 break;
         }
     }
+}function DOMasignaturasMarcadas($conn)
+{
+    $asignaturas = read($conn, "asignaturas");
+    foreach ($asignaturas as $asignatura) {
+        echo '<input id="' . $asignatura['nombreAsignatura'] . '" type="checkbox" name="checkbox[]" value="' . $asignatura['nombreAsignatura']. '">';
+        echo '<label for="' . $asignatura['nombreAsignatura'] . '"> ' . $asignatura['nombreAsignatura'] . '</label><br>';
+    }
+}
+function matricular ($conn, $DNI, $asignaturasMarcadas){
+    if (isset($asignaturasMarcadas)) {
+        try {
+            $stmt = $conn->prepare("INSERT INTO matriculados (nombreAsignatura, DNI) VALUES (?,?)");
+            foreach($asignaturasMarcadas as $asignatura){
+                $stmt->execute([$asignatura, $DNI]);
+            }
+            echo "Se matriculó al alumno en todas las asignaturas.<br>";
+        } catch (PDOException $e) {
+            switch ($e->getCode()) {
+                    // 23000 para repetido
+                case 23000:
+                    echo "El DNI que ha escrito ya existe <br>";
+                    break;
+                    // 22001 para caracter demasiado largo
+                case 22001:
+                    echo "Alguno de los campos es demasiado largo <br>";
+                    break;
+                default:
+                    echo "Ha ocurrido un error <br>";
+                    break;
+            }
+        }
+    }
 }
 //Asignaturas
 function DOMasignaturas($conn)
 {
     $asignaturas = read($conn, "asignaturas");
     foreach ($asignaturas as $asignatura) {
-        echo '<input id="' . $asignatura['nombreAsignatura'] . '" type="checkbox"' . $asignatura['nombreAsignatura'] . '>';
+        echo '<input id="' . $asignatura['nombreAsignatura'] . '" type="checkbox" name="checkbox[]" value="' . $asignatura['nombreAsignatura']. '">';
         echo '<label for="' . $asignatura['nombreAsignatura'] . '"> ' . $asignatura['nombreAsignatura'] . '</label><br>';
     }
 }

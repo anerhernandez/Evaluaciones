@@ -1,15 +1,15 @@
 <?php
 require("crud.php");
-
+//QUEDA ARREGLAR
 ?>
 <h1>CREAR ALUMNO</h1>
 <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-    <label for="nombre">Nombre alumno</label>
+    <!-- <label for="nombre">Nombre alumno</label>
     <input type="text" name="nombre" id="nombre"><br><br>
     <label for="DNI">DNI</label>
-    <input type="text" name="DNI" id="DNI"><br><br>
+    <input type="text" name="DNI" id="DNI"><br><br> -->
     <?php 
-        DOMasignaturas($conn);
+        DOMasignaturasMarcadas($conn);
     ?>
     <br>
     <button type="submit" name="enviar" id="enviar">Enviar</button>
