@@ -31,7 +31,7 @@ require("crud.php");
     INNER JOIN asignaturas ON matriculados.nombreAsignatura = asignaturas.nombreAsignatura
     INNER JOIN temas ON asignaturas.nombreAsignatura = temas.nombreAsignatura
     INNER JOIN actividades ON temas.nombreTema = actividades.nombreTema
-    INNER JOIN notas ON actividades.nombreActividad = notas.nombreActividad ORDER BY alumnos.nombreAlumno");
+    INNER JOIN notas ON actividades.nombreActividad = notas.nombreActividad WHERE alumnos.DNI = notas.DNI");
     $stmt->execute([]);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $resultado = ($stmt->fetchAll());
