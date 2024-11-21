@@ -164,6 +164,39 @@ function DOMSelectactividades($conn)
     
 }
 //Notas
+function asignarNotas($conn){
+    $alumnos = read($conn, "alumnos");
+    foreach ($alumnos as $alumno) {
+        echo '<option value="' . $alumno['DNI'] . '">' . $alumno['nombreAlumno'] . '</option>';
+    }
+}
+function DOMactividades($conn){
+    $actividades = read($conn, "actividades");
+    foreach ($actividades as $actividad) {
+        echo '<option value="' . $actividad['nombreActividad'] . '">' . $actividad['nombreActividad'] . '</option>';
+    }
+}
+function createnota($conn, $datos){
+    try {
+        $stmt = $conn->prepare("INSERT INTO notas (DNI, nombreActividad, notas) VALUES (?, ?, ?)");
+        return $stmt->execute($datos);
+    } catch (PDOException $e) {
+        switch ($e->getCode()) {
+                // 23000 para repetido
+            case 23000:
+                $_SESSION["notas"]["error"] = "La nota que ya ha sido asignada <br>" . $e->getMessage();
+                break;
+                // 22001 para caracter demasiado largo
+            case 22001:
+                $_SESSION["notas"]["error"] = "El texto escrito es demasiado largo <br>";
+                break;
+            default:
+            $_SESSION["notas"]["error"] = "Ha ocurrido un error <br> " . $e->getMessage();
+                break;
+        }
+    }
+}
+//INSERT INTO `notas` (`DNI`, `nombreActividad`, `notas`) VALUES ('4212273U', 'modsecurity', '7');-->
 
 //Deletes
 function delete($conn, $email)
