@@ -19,5 +19,6 @@
 <a href="Alumnos.php">Alumno</a><br>
 <a href="Temas.php">Tema</a><br>
 <a href="Actividades.php">Atividades</a><br>
-<a href="Notas.php">Asignar notas</a><br><br>
+<a href="Notas.php">Asignar notas</a><br>
+<a href="VerDB.php">Ver DB</a><br><br>
 <a href="index.php">Volver a inicio</a><br>
