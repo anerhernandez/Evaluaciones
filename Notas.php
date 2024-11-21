@@ -8,7 +8,7 @@ if (isset($_POST["alumnos"]) && isset($_POST["actividad"]) && isset($_POST["nota
     }else{
         $datos = [$_POST["alumnos"], $_POST["actividad"], $_POST["nota"]];
         if (createnota($conn, $datos)) {
-            $mensaje = "Se ha creado la actividad con éxito <br>";
+            $mensaje = "Se ha actualizado la nota <br>";
         };
     }
     

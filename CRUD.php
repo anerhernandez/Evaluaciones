@@ -184,7 +184,7 @@ function createnota($conn, $datos){
         switch ($e->getCode()) {
                 // 23000 para repetido
             case 23000:
-                $_SESSION["notas"]["error"] = "La nota que ya ha sido asignada <br>" . $e->getMessage();
+                $_SESSION["notas"]["error"] = "La nota ya ha sido asignada <br>";
                 break;
                 // 22001 para caracter demasiado largo
             case 22001:
