@@ -8,6 +8,9 @@ require("crud.php");
         $asignaturas = read($conn, "asignaturas");
         $temas = read($conn, "temas");
         $actividades = read($conn, "actividades");
+        echo "<hr>";
+        echo "<h1 ><span style=' padding-left: 5px; text-shadow:1px 1px 2px blue'>Asignaturas</span><span style=' padding-left: 5px; text-shadow:2px 2px 5px green'>Temas</span><span style=' padding-left: 5px; text-shadow:2px 2px 5px red'>Actividades</span></h1>";
+        echo "<hr>";
         foreach ($asignaturas as $asignatura) {
             echo "<h2 style='text-shadow:1px 1px 2px blue'>" . $asignatura["nombreAsignatura"] . "</h2>";
             foreach ($temas as $tema) {
